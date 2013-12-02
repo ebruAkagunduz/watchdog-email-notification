@@ -1,6 +1,6 @@
 #watchdog-email-notification
 
-Sends email when any file changes in "/etc" file or directory.
+Sends email when any file or directory changes in "/etc".
 
 ## Author
 Ebru Akagündüz ebru.akagunduz@gmail.com
