@@ -13,11 +13,10 @@ SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
 SMTP_USERNAME = "user"
 SMTP_PASSWORD = "passwd"
-
 EMAIL_TO = "to"
 EMAIL_FROM = "from"
 EMAIL_SUBJECT = "Info from watchdog"
-
+PATH = "/etc/"
 
 class SendMail():
 
@@ -36,8 +35,6 @@ class SendMail():
 
 class FileEventHandler(PatternMatchingEventHandler):
 
-    path = "/etc/"
-  
     def on_modified(self, event):
         obj = SendMail()
         obj.send_email(event.src_path)
@@ -60,8 +57,8 @@ class FileEventHandler(PatternMatchingEventHandler):
 if __name__ == "__main__": 
 
     observer = Observer()
-    event_handler = FileEventHandler(ignore_patterns=['*.swp', '*.swx', '*.swpx', '*~'])
-    observer.schedule(event_handler, FileEventHandler.path, recursive=True) 
+    event_handler = FileEventHandler(ignore_patterns=['*.swp', '*.swx', '*.swpx'])
+    observer.schedule(event_handler, PATH, recursive=True)
     observer.start()
     try:
         while True:
